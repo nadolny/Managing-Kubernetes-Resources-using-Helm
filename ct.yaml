@@ -1,0 +1,9 @@
+chart-dirs:
+  - helm-charts/charts
+
+chart-repos:
+  - bitnami=https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+
+target-branch: main
+
+validate-maintainers: false

@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: nginx
+    targetRevision: 9.7.6
+    repoURL: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+    helm:
+      values: |-
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chapter10
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
